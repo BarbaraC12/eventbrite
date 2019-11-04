@@ -30,3 +30,22 @@ users =[]
             last_name: Faker::TvShows::DrWho.specie  )
         
     end
+
+events =[]
+    10.times do 
+        events << Event.create(
+            start_date: Faker::Date.forward(days: 150), 
+            duration: 200,
+            title: Faker::Books::CultureSeries.book, 
+            description: Faker::Lorem.sentence,
+            price: Faker::Number.within(range: 1..1000),
+            location: Faker::JapaneseMedia::OnePiece.location )
+    end
+​
+attendance = []
+    15.times do 
+        attendance << Attendance.create(
+            stripe_customer_id: Faker::Stripe.valid_card,
+            user: users.sample ,
+            event: events.sample )
+    end
